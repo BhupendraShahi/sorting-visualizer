@@ -22,20 +22,20 @@ function App() {
     // generating shuffled array of 1 to n
     const generateRandomArray = (len) => {
         setCompleted(false)
-        setSorting(false);
-        setSortedIndex(false);
+        setSorting(false)
+        setSortedIndex([])
 
-        const randomArray = Array.from(Array(len + 1).keys()).slice(1);
+        const randomArray = Array.from(Array(len + 1).keys()).slice(1)
 
         for (let i = randomArray.length - 1; i > 0; i--) {
-            const randomIndex = Math.floor(Math.random() * (i - 1))
-            const temp = randomArray[i]
+        const randomIndex = Math.floor(Math.random() * (i - 1))
+        const temp = randomArray[i]
 
-            randomArray[i] = randomArray[randomIndex]
-            randomArray[randomIndex] = temp
+        randomArray[i] = randomArray[randomIndex]
+        randomArray[randomIndex] = temp
         }
 
-        setBlocks(randomArray);
+        setBlocks(randomArray)
     }
 
     // Generating random array every time the length is changed by th user
@@ -45,12 +45,12 @@ function App() {
 
     // setting the selected algorithm
     const handleAlgo = (event) => {
-        setAlgo(event.target.value)
+        setAlgo(event.target.value);
     }
 
     // handling the length of array
     const handleLength = (event) => {
-        setLength(Number(event.target.value))
+        setLength(Number(event.target.value));
     }
 
     // handling the speed of sorting

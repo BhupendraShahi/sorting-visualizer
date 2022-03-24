@@ -31,6 +31,7 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
                 if (swap && (i === swap[0] || i === swap[1])) {
                     bg = 'red'
                 }
+                
                 // i th element is in sorted position
                 if (sorted && sorted.includes(i)) {
                     bg = '#4bc52e'
@@ -42,6 +43,7 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
                     height: height,
                     width: width,
                 }
+
                 return (
                     <div key={i} className='block' style={style}>
                         {block}
