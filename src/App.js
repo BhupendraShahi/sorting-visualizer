@@ -1,43 +1,124 @@
 import React, { useState, useEffect } from "react";
 
 import NavBar from "./components/NavBar";
+import Bars from "./components/Bars.jsx";
 
 import bubbleSort from './algorithms/bubbleSort';
+import insertionSort from "./algorithms/insertionSort";
 
 function App() {
     //states
-    const [completed, setCompleted] = useState(false);
+    const [algo, setAlgo] = useState('bubbleSort');
+    const [len, setLength] = useState(30);
+    const [blocks, setBlocks] = useState([]);
     const [sorting, setSorting] = useState(false);
+    const [completed, setCompleted] = useState(true);
+    const [speed, setSpeed] = useState(250);
+    const [compare, setCompare] = useState([]);
+    const [swap, setSwap] = useState([]);
     const [sortedIndex, setSortedIndex] = useState([]);
-    const [blocks, setBlocks] = useState([])
 
-    //generating shuffled array of 1 to n
-    // const generateRandomArray = (len) => {
-    //     setCompleted(false)
-    //     setSorting(false);
-    //     setSortedIndex(false);
 
-    //     const randomArray = Array.from(Array(len + 1).keys()).slice(1);
+    // generating shuffled array of 1 to n
+    const generateRandomArray = (len) => {
+        setCompleted(false)
+        setSorting(false);
+        setSortedIndex(false);
 
-    //     for (let i = randomArray.length - 1; i > 0; i--) {
-    //         const randomIndex = Math.floor(Math.random() * (i - 1))
-    //         const temp = randomArray[i]
+        const randomArray = Array.from(Array(len + 1).keys()).slice(1);
 
-    //         randomArray[i] = randomArray[randomIndex]
-    //         randomArray[randomIndex] = temp
-    //     }
+        for (let i = randomArray.length - 1; i > 0; i--) {
+            const randomIndex = Math.floor(Math.random() * (i - 1))
+            const temp = randomArray[i]
 
-    //     setBlocks(randomArray);
-    // }
+            randomArray[i] = randomArray[randomIndex]
+            randomArray[randomIndex] = temp
+        }
 
-    // // Generating random array every time the length is changed by th user
-    // useEffect(() => {
-    //     generateRandomArray(len)
-    // }, [len, algo])
+        setBlocks(randomArray);
+    }
+
+    // Generating random array every time the length is changed by th user
+    useEffect(() => {
+        generateRandomArray(len)
+    }, [len, algo])
+
+    // setting the selected algorithm
+    const handleAlgo = (event) => {
+        setAlgo(event.target.value)
+    }
+
+    // handling the length of array
+    const handleLength = (event) => {
+        setLength(Number(event.target.value))
+    }
+
+    // handling the speed of sorting
+    const handleSpeed = (event) => {
+        setSpeed(Math.ceil(400 / Number(event.target.value)));
+    }
+
+    // Sorting according to the algorithm
+    const handleSort = () => {
+        const sortAccOrder = (order) => {
+            ; (function loop(i) {
+                setTimeout(function () {
+                    const [j, k, arr, index] = order[i]
+                    setCompare([j, k])
+                    setSwap([])
+
+                    if (index !== null) {
+                        setSortedIndex((prevState) => [...prevState, index])
+                    }
+
+                    if (arr) {
+                        setBlocks(arr)
+                        if (j !== null || k != null) setSwap([j, k])
+                    }
+
+                    if (++i < order.length) {
+                        loop(i)
+                    } else {
+                        setSorting(false)
+                        setCompleted(true)
+                    }
+                }, speed)
+            })(0)
+        }
+
+        setSorting(true)
+
+        algo === 'bubbleSort'
+            ? sortAccOrder(bubbleSort(blocks))
+            : algo === 'insertionSort'
+                ? sortAccOrder(insertionSort(blocks))
+                : (() => {
+                    setSorting(false)
+                     setCompleted(true)
+                })()
+    }
 
     return (
         <div className="App">
-            <NavBar />
+            <NavBar 
+                generateRandomArray={() => generateRandomArray(len)}
+                handleLength={handleLength}
+                handleSpeed={handleSpeed}
+                handleAlgo={handleAlgo}
+                handleSort={handleSort}
+                sorting={sorting}
+                completed={completed}
+                len={len}
+                speed={speed}
+                algo={algo}
+            />
+
+            <Bars
+                blocks={blocks}
+                compare={sorting && compare}
+                swap={sorting && swap}
+                sorted={sortedIndex}
+            />
         </div>
     )
 }
