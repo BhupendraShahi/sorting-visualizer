@@ -1,7 +1,18 @@
 import React from 'react';
 import './NavBar.css';
 
-function NavBar() {
+function NavBar({
+    handleLength,
+    handleSpeed,
+    handleAlgo,
+    generateRandomArray,
+    handleSort,
+    sorting,
+    completed,
+    len,
+    speed,
+    algo,
+}) {
 
     return (
         <nav>
@@ -15,8 +26,11 @@ function NavBar() {
                         <label>Speed</label>
                         <input
                             type='range'
+                            onChange={handleSpeed}
                             min='1'
                             max='10'
+                            value={Math.ceil(400 / speed)}
+                            disabled={sorting}
                         ></input>
                     </div>
 
@@ -24,13 +38,16 @@ function NavBar() {
                         <label>Length</label>
                         <input
                             type='range'
+                            onChange={handleLength}
                             min='5'
                             max={100}
                             step='1'
+                            disabled={sorting}
+                            value={len}
                         ></input>
                     </div>
 
-                    <select>
+                    <select onChange={handleAlgo} disabled={sorting} value={algo}>
                         <option value='bubbleSort'>Bubble Sort</option>
                         <option value='selectionSort'>Selection Sort</option>
                         <option value='insertionSort'>Insertion Sort</option>
@@ -40,10 +57,10 @@ function NavBar() {
                 </div>
 
                 <div>
-                    <button>
+                    <button onClick={generateRandomArray} disabled={sorting}>
                         New Array
                     </button>
-                    <button >
+                    <button onClick={handleSort} disabled={sorting || completed}>
                         Sort
                     </button>
                 </div>
