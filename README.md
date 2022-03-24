@@ -1,1 +1,1 @@
-#sorting visualizer using html, css, javascript
+A Sorting visualizer made using react js
