@@ -4,12 +4,14 @@
   min-height: 520px;
   min-width: 90%;
   text-align: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .listBlocks > .block {
   background-color: turquoise;
   color: #282c34;
-  display: inline-block;
   border-radius: 5px;
   font-size: 10px;
   font-weight: bold;

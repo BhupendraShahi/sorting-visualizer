@@ -5,6 +5,8 @@ import Bars from "./components/Bars.jsx";
 
 import bubbleSort from './algorithms/bubbleSort';
 import insertionSort from "./algorithms/insertionSort";
+import selectionSort from "./algorithms/selectionSort";
+import quickSort from "./algorithms/quickSort";
 
 function App() {
     //states
@@ -40,7 +42,7 @@ function App() {
 
     // Generating random array every time the length is changed by th user
     useEffect(() => {
-        generateRandomArray(len)
+        generateRandomArray(len);
     }, [len, algo])
 
     // setting the selected algorithm
@@ -48,7 +50,7 @@ function App() {
         setAlgo(event.target.value);
     }
 
-    // handling the length of array
+    // handling the length of the array
     const handleLength = (event) => {
         setLength(Number(event.target.value));
     }
@@ -90,12 +92,16 @@ function App() {
 
         algo === 'bubbleSort'
             ? sortAccOrder(bubbleSort(blocks))
-            : algo === 'insertionSort'
+            : algo === 'selectionSort'
                 ? sortAccOrder(insertionSort(blocks))
-                : (() => {
-                    setSorting(false)
-                     setCompleted(true)
-                })()
+                : algo === 'insertionSort'
+                    ? sortAccOrder(selectionSort(blocks))
+                    : algo === 'quickSort'
+                        ? sortAccOrder(quickSort(blocks))
+                        : (() => {
+                            setSorting(false)
+                            setCompleted(true)
+                        })();
     }
 
     return (
