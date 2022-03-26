@@ -7,6 +7,7 @@ import bubbleSort from './algorithms/bubbleSort';
 import insertionSort from "./algorithms/insertionSort";
 import selectionSort from "./algorithms/selectionSort";
 import quickSort from "./algorithms/quickSort";
+import mergeSort from "./algorithms/mergeSort";
 
 function App() {
     //states
@@ -98,10 +99,12 @@ function App() {
                     ? sortAccOrder(selectionSort(blocks))
                     : algo === 'quickSort'
                         ? sortAccOrder(quickSort(blocks))
-                        : (() => {
-                            setSorting(false)
-                            setCompleted(true)
-                        })();
+                        : algo === 'mergeSort'
+                            ? sortAccOrder(mergeSort(blocks))
+                            : (() => {
+                                setSorting(false)
+                                setCompleted(true)
+                            })();
     }
 
     return (
