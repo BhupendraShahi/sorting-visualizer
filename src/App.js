@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "./components/NavBar";
 import Bars from "./components/Bars.jsx";
 
-import bubbleSort from './algorithms/bubbleSort';
+import bubbleSort from "./algorithms/bubbleSort";
 import insertionSort from "./algorithms/insertionSort";
 import selectionSort from "./algorithms/selectionSort";
 import quickSort from "./algorithms/quickSort";
@@ -11,7 +11,7 @@ import mergeSort from "./algorithms/mergeSort";
 
 function App() {
     //states
-    const [algo, setAlgo] = useState('bubbleSort');
+    const [algo, setAlgo] = useState("bubbleSort");
     const [len, setLength] = useState(30);
     const [blocks, setBlocks] = useState([]);
     const [sorting, setSorting] = useState(false);
@@ -91,15 +91,15 @@ function App() {
 
         setSorting(true)
 
-        algo === 'bubbleSort'
+        algo === "bubbleSort"
             ? sortAccOrder(bubbleSort(blocks))
-            : algo === 'selectionSort'
+            : algo === "selectionSort"
                 ? sortAccOrder(insertionSort(blocks))
-                : algo === 'insertionSort'
+                : algo === "insertionSort"
                     ? sortAccOrder(selectionSort(blocks))
-                    : algo === 'quickSort'
+                    : algo === "quickSort"
                         ? sortAccOrder(quickSort(blocks))
-                        : algo === 'mergeSort'
+                        : algo === "mergeSort"
                             ? sortAccOrder(mergeSort(blocks))
                             : (() => {
                                 setSorting(false)
