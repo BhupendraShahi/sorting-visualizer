@@ -8,6 +8,8 @@ Sorting Algorithms visualized are as follows:
 4. Quick Sort.
 5. MergeSort.
 
+Hosted On Heroku.
+
 # ScreenShots
 
 ![Screenshot from 2022-09-10 15-57-34](https://user-images.githubusercontent.com/62903302/189479322-c525b706-1ece-42c2-a66d-5baf4844b690.png)
