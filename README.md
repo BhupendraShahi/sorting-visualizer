@@ -5,5 +5,3 @@ Sorting Algorithms visualized are as follows:
 3. Insertion Sort.
 4. Quick Sort.
 5. MergeSort.
-
-try it here: https://my-sorting-visualizer-app.herokuapp.com/
