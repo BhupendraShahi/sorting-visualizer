@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavBar.css";
 
-function NavBar({
+const NavBar = ({
     handleLength,
     handleSpeed,
     handleAlgo,
@@ -12,7 +12,7 @@ function NavBar({
     len,
     speed,
     algo,
-}) {
+}) => {
 
     return (
         <nav>
