@@ -7,7 +7,7 @@ const ListBlocks = ({ blocks, compare, sorted, swap }) => {
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
     );
     
-    const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
+    const color = width > 12 ? "black" : "transparent";
 
     useEffect(() => {
         const handleResize = () => {
@@ -22,7 +22,7 @@ const ListBlocks = ({ blocks, compare, sorted, swap }) => {
     return (
         <div className="listBlocks">
             {blocks.map((block, i) => {
-                const height = (block * 500) / blocks.length
+                const height = (block * 600) / blocks.length
                 let bg = "turquoise"
 
                 // i th element is being compared with the other element

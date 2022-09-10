@@ -40,7 +40,7 @@ const NavBar = ({
                             type="range"
                             onChange={handleLength}
                             min="5"
-                            max={100}
+                            max={75}
                             step="1"
                             disabled={sorting}
                             value={len}
@@ -58,7 +58,7 @@ const NavBar = ({
 
                 <div>
                     <button onClick={generateRandomArray} disabled={sorting}>
-                        New Array
+                        Random Array
                     </button>
                     <button onClick={handleSort} disabled={sorting || completed}>
                         Sort
